@@ -1,7 +1,7 @@
-FROM golang
+FROM golang:1.15.5
 
 RUN apt update -y
-RUN apt install -y mesa-opencl-icd ocl-icd-opencl-dev gcc git bzr jq pkg-config curl wget
+RUN apt install -y mesa-opencl-icd ocl-icd-opencl-dev gcc git bzr jq pkg-config curl wget hwloc libhwloc-dev
 RUN apt upgrade -y
 
 ENV GO111MODULE=on
@@ -13,6 +13,6 @@ RUN mkdir -p src/github.com/filecoin-project
 WORKDIR $GOPATH/src/github.com/filecoin-project
 RUN git clone https://github.com/filecoin-project/filecoin-ffi
 WORKDIR $GOPATH/src/github.com/filecoin-project/filecoin-ffi
-RUN git checkout a62d00da59d1b0fb
+RUN git checkout 1d9cb3e8ff53f51f
 RUN make
 RUN go install
