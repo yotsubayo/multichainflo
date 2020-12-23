@@ -99,6 +99,7 @@ type Asset string
 // from an existing chain, you must add a human-readable string to this set of
 // enumerated values. Assets must be listed in alphabetical order.
 const (
+	AVAX = Asset("AVAX") // Ava
 	BCH  = Asset("BCH")  // Bitcoin Cash
 	BNB  = Asset("BNB")  // Binance Coin
 	BTC  = Asset("BTC")  // Bitcoin
@@ -124,6 +125,8 @@ const (
 // the origin chain of BTC is Bitcoin.
 func (asset Asset) OriginChain() Chain {
 	switch asset {
+	case AVAX:
+		return Ava
 	case BCH:
 		return BitcoinCash
 	case BNB:
@@ -209,6 +212,7 @@ type Chain string
 // in alphabetical order.
 const (
 	Acala             = Chain("Acala")
+	Ava               = Chain("Ava")
 	BinanceSmartChain = Chain("BinanceSmartChain")
 	Bitcoin           = Chain("Bitcoin")
 	BitcoinCash       = Chain("BitcoinCash")
@@ -254,7 +258,7 @@ func (chain Chain) ChainType() ChainType {
 	switch chain {
 	case Bitcoin, BitcoinCash, DigiByte, Dogecoin, Zcash:
 		return ChainTypeUTXOBased
-	case BinanceSmartChain, Ethereum, Filecoin, Terra:
+	case Ava, BinanceSmartChain, Ethereum, Filecoin, Terra:
 		return ChainTypeAccountBased
 
 	// These chains are handled separately because they are mock chains. These
@@ -286,6 +290,8 @@ func (chain Chain) IsUTXOBased() bool {
 // root asset of Bitcoin chain is BTC.
 func (chain Chain) NativeAsset() Asset {
 	switch chain {
+	case Ava:
+		return AVAX
 	case BinanceSmartChain:
 		return BNB
 	case BitcoinCash:
@@ -325,7 +331,7 @@ type ChainType string
 
 const (
 	// ChainTypeAccountBased is an identifier for all account-based chains,
-	// namely, BinanceSmartChain, Ethereum, Filecoin, and so on.
+	// namely, Ava, BinanceSmartChain, Ethereum, Filecoin, and so on.
 	ChainTypeAccountBased = ChainType("Account")
 
 	// ChainTypeUTXOBased is an identifier for all utxo-based chains, namely,
