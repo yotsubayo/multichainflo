@@ -13,6 +13,7 @@ import (
 	"github.com/renproject/pack"
 
 	cliContext "github.com/cosmos/cosmos-sdk/client/context"
+	cliRpc "github.com/cosmos/cosmos-sdk/client/rpc"
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/auth"
@@ -127,6 +128,19 @@ func NewClient(opts ClientOptions, cdc *codec.Codec, hrp string) *Client {
 	}
 }
 
+// LatestBlock returns the most recent block's number.
+func (client *Client) LatestBlock(ctx context.Context) (pack.U64, error) {
+	height, err := cliRpc.GetChainHeight(client.cliCtx)
+	if err != nil {
+		return pack.NewU64(0), fmt.Errorf("get chain height: %v", err)
+	}
+	if height < 0 {
+		return pack.NewU64(0), fmt.Errorf("unexpected chain height, expected > 0, got: %v", height)
+	}
+
+	return pack.NewU64(uint64(height)), nil
+}
+
 // Tx query transaction with txHash
 func (client *Client) Tx(ctx context.Context, txHash pack.Bytes) (account.Tx, pack.U64, error) {
 	res, err := utils.QueryTx(client.cliCtx, hex.EncodeToString(txHash[:]))
@@ -169,8 +183,6 @@ func (client *Client) SubmitTx(ctx context.Context, tx account.Tx) error {
 // AccountNonce returns the current nonce of the account. This is the nonce to
 // be used while building a new transaction.
 func (client *Client) AccountNonce(_ context.Context, addr address.Address) (pack.U256, error) {
-	types.GetConfig().SetBech32PrefixForAccount(client.hrp, client.hrp+"pub")
-
 	cosmosAddr, err := types.AccAddressFromBech32(string(addr))
 	if err != nil {
 		return pack.U256{}, fmt.Errorf("bad address: '%v': %v", addr, err)
@@ -187,8 +199,6 @@ func (client *Client) AccountNonce(_ context.Context, addr address.Address) (pac
 
 // AccountNumber returns the account number for a given address.
 func (client *Client) AccountNumber(_ context.Context, addr address.Address) (pack.U64, error) {
-	types.GetConfig().SetBech32PrefixForAccount(client.hrp, client.hrp+"pub")
-
 	cosmosAddr, err := types.AccAddressFromBech32(string(addr))
 	if err != nil {
 		return 0, fmt.Errorf("bad address: '%v': %v", addr, err)
