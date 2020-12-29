@@ -1,0 +1,13 @@
+version: "2"
+services:
+  #
+  # Dogecoin
+  #
+  dogecoin:
+    build:
+      context: ./dogecoin
+    ports:
+      - "0.0.0.0:18332:18332"
+    entrypoint:
+      - "./root/run.sh"
+      - "${DOGECOIN_ADDRESS}"
