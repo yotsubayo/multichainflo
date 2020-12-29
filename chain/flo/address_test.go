@@ -11,7 +11,7 @@ import (
 var _ = Describe("DigiByte", func() {
 	Context("when decoding an address", func() {
 		It("should work without errors", func() {
-			_, err := flo.NewAddressDecoder(&flo.MainNetParams).DecodeAddress(address.Address("DBLsEv4FdFPGrMWzcagDQvoKgUL2CikhMf"))
+			_, err := flo.NewAddressDecoder(&flo.MainNetParams).DecodeAddress(address.Address("FQUqiW8p22QP5LVHZj2iUDox9YpVJ33Mnd"))
 			Expect(err).NotTo(HaveOccurred())
 		})
 	})

@@ -2,9 +2,8 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/btcsuite/btcd/btcec"
-	"github.com/btcsuite/btcutil"
+	"github.com/bitspill/flod/floec"
+	"github.com/bitspill/floutil"
 
 	"github.com/renproject/id"
 	"github.com/renproject/multichain/chain/flo"
@@ -12,11 +11,11 @@ import (
 
 func main() {
 	privKey := id.NewPrivKey()
-	wif, err := btcutil.NewWIF((*btcec.PrivateKey)(privKey), &flo.RegressionNetParams, true)
+	wif, err := floutil.NewWIF((*floec.PrivateKey)(privKey), &flo.RegressionNetParams, true)
 	if err != nil {
 		panic(err)
 	}
-	addrPubKeyHash, err := btcutil.NewAddressPubKeyHash(btcutil.Hash160(wif.SerializePubKey()), &flo.RegressionNetParams)
+	addrPubKeyHash, err := floutil.NewAddressPubKeyHash(floutil.Hash160(wif.SerializePubKey()), &flo.RegressionNetParams)
 	if err != nil {
 		panic(err)
 	}
