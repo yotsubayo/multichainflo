@@ -7,19 +7,19 @@ import (
 	"github.com/btcsuite/btcutil"
 
 	"github.com/renproject/id"
-	"flo"
+	"github.com/renproject/multichain/chain/flo"
 )
 
 func main() {
 	privKey := id.NewPrivKey()
-	wif, err := btcutil.NewWIF((*btcec.PrivateKey)(privKey), &.RegressionNetParams, true)
+	wif, err := btcutil.NewWIF((*btcec.PrivateKey)(privKey), &flo.RegressionNetParams, true)
 	if err != nil {
 		panic(err)
 	}
-	addrPubKeyHash, err := btcutil.NewAddressPubKeyHash(btcutil.Hash160(wif.SerializePubKey()), &.RegressionNetParams)
+	addrPubKeyHash, err := btcutil.NewAddressPubKeyHash(btcutil.Hash160(wif.SerializePubKey()), &flo.RegressionNetParams)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("DOGECOIN_PK=%v\n", wif)
-	fmt.Printf("DOGECOIN_ADDRESS=%v\n", addrPubKeyHash)
+	fmt.Printf("FLO_PK=%v\n", wif)
+	fmt.Printf("FLO_ADDRESS=%v\n", addrPubKeyHash)
 }
