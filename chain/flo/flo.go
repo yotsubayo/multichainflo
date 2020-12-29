@@ -334,7 +334,6 @@ var TestNetParams = chaincfg.Params{
 	ReduceMinDifficulty:          true,
 	MinDiffReductionTime:         time.Second * 80, // TargetTimePerBlock * 2
 	GenerateSupported:            false,
-	PowNoRetargeting:             false,
 
 	// Checkpoints ordered from oldest to newest.
 	Checkpoints: []chaincfg.Checkpoint{
@@ -414,7 +413,6 @@ var RegressionNetParams = chaincfg.Params{
 	ReduceMinDifficulty:          true,
 	MinDiffReductionTime:         time.Second * 80, // TargetTimePerBlock * 2
 	GenerateSupported:            true,
-	PowNoRetargeting:             true,
 
 	// Checkpoints ordered from oldest to newest.
 	Checkpoints: nil,

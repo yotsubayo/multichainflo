@@ -114,6 +114,8 @@ github.com/bgentry/speakeasy v0.1.0 h1:ByYyxL9InA1OWqxJqqp2A5pYHUrCiAL6K3J+LKSsQ
 github.com/bgentry/speakeasy v0.1.0/go.mod h1:+zsyZBPWlz7T6j88CTgSN5bM796AkVf0kBD4zp0CCIs=
 github.com/bitspill/flod v0.0.0-20200117025253-bf2a74ee75ee h1:476ERazmPwtjvvql0dnhuOzf/kUrLamIroxN4A28fS8=
 github.com/bitspill/flod v0.0.0-20200117025253-bf2a74ee75ee/go.mod h1:LetTvR2HhZ+uZu1uLNpgojvBZLlbrl/Hc/PF3fSButU=
+github.com/bitspill/floutil v0.0.0-20180525171018-986e42f96cdb h1:lh+MYkoOjrNMjvc3EZZjHDupTt/ZXhDlsowEWkeQ+dY=
+github.com/bitspill/floutil v0.0.0-20180525171018-986e42f96cdb/go.mod h1:q+n3qEcw8dizD/RCkEpKMnDsjnNSDP9V8Bq0//zeuoI=
 github.com/bradfitz/go-smtpd v0.0.0-20170404230938-deb6d6237625/go.mod h1:HYsPBTaaSFSlLx/70C2HPIMNZpVV8+vt/A+FMnYP11g=
 github.com/briandowns/spinner v1.11.1/go.mod h1:QOuQk7x+EaDASo80FEXwlwiA+j/PPIcX3FScO+3/ZPQ=
 github.com/btcsuite/btcd v0.0.0-20171128150713-2e60448ffcc6/go.mod h1:Dmm/EzmjnCiweXmzRIAiUWCInVmPgjkzgv5k4tVyXiQ=
