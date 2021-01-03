@@ -31,7 +31,6 @@ var _ = Describe("Flo", func() {
 				}
 				wif, err := floutil.DecodeWIF(pkEnv)
 				Expect(err).ToNot(HaveOccurred())
-
 				// PKH
 				pkhAddr, err := floutil.NewAddressPubKeyHash(floutil.Hash160(wif.PrivKey.PubKey().SerializeCompressed()), &flo.RegressionNetParams)
 				Expect(err).ToNot(HaveOccurred())

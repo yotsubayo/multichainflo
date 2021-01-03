@@ -31,7 +31,6 @@ var _ = Describe("Dogecoin", func() {
 				}
 				wif, err := btcutil.DecodeWIF(pkEnv)
 				Expect(err).ToNot(HaveOccurred())
-
 				// PKH
 				pkhAddr, err := btcutil.NewAddressPubKeyHash(btcutil.Hash160(wif.PrivKey.PubKey().SerializeCompressed()), &dogecoin.RegressionNetParams)
 				Expect(err).ToNot(HaveOccurred())
