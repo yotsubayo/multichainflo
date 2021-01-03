@@ -8,7 +8,7 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-var _ = Describe("DigiByte", func() {
+var _ = Describe("Flo", func() {
 	Context("when decoding an address", func() {
 		It("should work without errors", func() {
 			_, err := flo.NewAddressDecoder(&flo.MainNetParams).DecodeAddress(address.Address("FQUqiW8p22QP5LVHZj2iUDox9YpVJ33Mnd"))

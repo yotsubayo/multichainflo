@@ -9,18 +9,6 @@ import (
 	"time"
 )
 
-func init() {
-	if err := chaincfg.Register(&MainNetParams); err != nil {
-		panic(err)
-	}
-	if err := chaincfg.Register(&TestNetParams); err != nil {
-		panic(err)
-	}
-	if err := chaincfg.Register(&RegressionNetParams); err != nil {
-		panic(err)
-	}
-}
-
 // newHashFromStr converts the passed big-endian hex string into a
 // wire.Hash.  It only differs from the one available in chainhash in that
 // it panics on an error since it will only (and must only) be called with
@@ -213,7 +201,7 @@ var regTestGenesisBlock = wire.MsgBlock{
 // MainNetParams returns the chain configuration for mainnet.
 var MainNetParams = chaincfg.Params{
 	Name:        "mainnet",
-	Net:         0xd9b4bef9,
+	Net:         0xf1a5c0fd,
 	DefaultPort: "8333",
 	DNSSeeds: []chaincfg.DNSSeed{
 		{"flodns.oip.fun", false},
