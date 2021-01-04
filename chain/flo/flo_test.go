@@ -23,9 +23,10 @@ var _ = Describe("Flo", func() {
 		Context("when sending Flo to multiple addresses", func() {
 			It("should work", func() {
 				// Load private key, and assume that the associated address has
-				// funds to spend. You can do this by setting DOGECOIN_PK to the
+				// funds to spend. You can do this by setting FLO_PK to the
 				// value specified in the `./multichaindeploy/.env` file.
 				pkEnv := os.Getenv("FLO_PK")
+
 				if pkEnv == "" {
 					panic("FLO_PK is undefined")
 				}
@@ -38,10 +39,12 @@ var _ = Describe("Flo", func() {
 				Expect(err).ToNot(HaveOccurred())
 				log.Printf("PKH                %v", pkhAddr.EncodeAddress())
 				log.Printf("PKH (uncompressed) %v", pkhAddrUncompressed.EncodeAddress())
-
 				// Setup the client and load the unspent transaction outputs.
 				client := flo.NewClient(flo.DefaultClientOptions().WithHost("http://127.0.0.1:8333"))
+
+				log.Printf("client created")
 				outputs, err := client.UnspentOutputs(context.Background(), 0, 999999999, address.Address(pkhAddr.EncodeAddress()))
+
 				Expect(err).ToNot(HaveOccurred())
 				Expect(len(outputs)).To(BeNumerically(">", 0))
 				output := outputs[0]
